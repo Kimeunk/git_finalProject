@@ -1,4 +1,3 @@
-
 $('#registForm').ready(function(){
 	$('#imageDiv').hide();
 	$('#subjectDiv').hide();
@@ -73,7 +72,7 @@ function readURL() {
 				reader.readAsDataURL(input.files[++index]);
 			}
 		}
-		//올린 파일 1개 데이터로 보내기
+		//이미지를 데이터 URI로 표현
 		reader.readAsDataURL(input.files[index]);
 	}
 }
@@ -232,6 +231,22 @@ $('#searchAddr').click(function(){
 
 
 
+/* 가격 */
+$('.priceInput').on('keyup', priceValidationKeyUpCheck);
+
+//유효성 검사
+function priceValidationKeyUpCheck(event) {
+	const key = event.keyCode;
+	const val = $(this).val();
+	if(!(/^[0-9]*$/.test(val))) { //숫자로만 끝나는게 아니라면
+		$(this).val(val.replace(/[^0-9]/g, '')); //0~9까지를 제외한 문자열이 있으면 공백으로 대체
+	}
+}
+
+
+
+
+
 /* 태그 영역 */
 function initTagArea() {
 	$('#tagInput').on('keyup', hashTagEvent);
@@ -324,9 +339,9 @@ $('#registBtn').click(function(){
 		else if($('#product_location').val()=='') { $('#locationDiv').show(); $('#product_location').focus(); return true; }
 		else if($('#product_price').val()=='') { $('#priceDiv').show(); $('#product_price').focus(); return true;}
 	}
-
+	
+	//submit
 	function registAction() {
-		console.log('들어왔');
 		$('#registForm').ajaxForm({
 			type: 'post',
 			enctype: 'multipart/form-data',

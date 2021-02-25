@@ -67,8 +67,8 @@ public class NoticeController {
 	//fag에 소분류 불러오기
 	@RequestMapping(value="/getFagContent", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView getFagContent(@RequestParam(required=false, defaultValue="1") int select2) {
-		List<NoticeDTO> list = noticeService.getFagContent(select2);
+	public ModelAndView getFagContent(@RequestParam(required=false) int option2_id) {
+		List<NoticeDTO> list = noticeService.getFagContent(option2_id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.setViewName("jsonView");
@@ -119,7 +119,7 @@ public class NoticeController {
 	public void writeQna(@ModelAttribute QnaDTO qnaDTO,
 						 @RequestParam( "img[]") List<MultipartFile> list) {
 		System.out.println("list:"+list);
-		String filePath = "C:\\git_home\\git_final\\finalProject\\src\\main\\webapp\\storage";
+		String filePath = "D:\\git_home\\git_final\\finalProject\\src\\main\\webapp\\storage";
 		
 		for(MultipartFile img: list) {
 			System.out.println("사진이름:"+img.getOriginalFilename());

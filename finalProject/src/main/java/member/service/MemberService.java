@@ -16,7 +16,6 @@ public interface MemberService {
 
 	public String checkId(String id);
 
-
 	public int join(MemberDTO memberDTO);
 
 	public MemberDTO getData(String id);
@@ -31,7 +30,7 @@ public interface MemberService {
 
 	public MemberDTO findPwd(Map<String, String> map);
 
-	public void resetPwd(Map<String, String> map);
+	public void resetPwd(String mem_pwd, String mem_email);
 
 	public void sessionLogin(Map<String, String> map, HttpSession session);
 
